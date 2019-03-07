@@ -47,6 +47,17 @@ sudo echo userdic = /YOUR_USERDIC_DIRECTORY/user.dic >> /usr/local/etc/mecabrc
 
 あとは `mecab` コマンドを打って正しく動くか確認してみましょう。
 
+### CircleCIを使って自動デプロイ
+
+1. デプロイしたいサーバに事前に `git clone` しておく
+2. cloneしたリポジトリ内の `deploy.sh` をホームディレクトリにコピーして中のパラメータ(特にREPO\_DIR)をリポジトリのディレクトリに直しておく。
+3. CircleCIの登録、プロジェクトの作成をする。
+4. プロジェクト設定の `Environment Variables` に `SSH_HOST` `SSH_USER` `SSH_PORT` を追加する。
+5. `ssh-keygen` などで鍵を作って `.ssh/authorized_keys` に公開鍵を追加。CircleCI設定画面の `SSH Permissions` に秘密鍵を追加する。
+6. `git push` してみて正しく動くかを確認する。
+
+参考：[CircleCIからSSHでGitHub上のコードを自動デプロイする | mofg](https://mofg.net/articles/continuous-delivery-with-circleci)
+
 ### 注意事項
 
 とりあえず需要はないと思うので、汎用的には作ってません。  
